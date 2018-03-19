@@ -1,0 +1,54 @@
+* {
+	margin: 0px auto;
+	padding: 0px;
+	font-family: 'Lato', sans-serif;
+}
+button {
+	outline: none;
+}
+
+ul,
+li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+body{
+	overflow: auto;
+}
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+em,
+img,
+small,
+strong,
+ol,
+ul,
+li,
+article,
+aside,
+figure,
+figcaption,
+footer,
+header,
+nav,
+section {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+input::-ms-clear{display: none;}
+/*input::-ms-reveal{display: none;}*/

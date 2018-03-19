@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>数据图形化助手</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<script src="js/lib/jquery-3.2.1.js"></script>
+		<script src="js/lib/echarts/echarts.js"></script>
+		<script src="js/lib/echarts/china.map.js"></script>
+		<script src="js/lib/svg.js"></script>
+		<script src="js/lib/xcConfirm.js"></script>
+		<script src="js/lib/echarts/theme/macarons.js"></script>
+		<script src="js/lib/js-xlsx-master/dist/jszip.js"></script>
+		<script src="js/lib/js-xlsx-master/dist/xlsx.full.min.js"></script>
+	</head>
+
+	<body>
+		<div id="total">
+			<div class="home">
+				<div id="title">
+					<div class="logo">
+						<img src="img/logo.png" />
+					</div>
+					<h1>
+                    <span>数据图形化助手</span>
+                    <span>Data Graphicalization Tool</span>
+                </h1>
+				</div>
+				<div class="container">
+					<section id="grid" class="grid clearfix">
+						<div class="con con-1">
+							<a href="javascript:;" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+								<figure>
+									<img src="img/upload_bg.jpg" />
+									<svg viewBox="0 0 180 320" preserveAspectRatio="none">
+										<path d="M 180,160 0,218 0,0 180,0 z">
+									</svg>
+									<figcaption>
+										<h2>File Upload</h2>
+										<p>Please upload the Excel File!</p>
+										<p>请上传你要导入的Excel！</p>
+										<div id="show">
+											<input type="text" name="" id="chart-title" placeholder="  请输入地图的标题，否则不予显示！" class="cont_form_input" />
+											<div class="uploader cont_form_input">
+												<input type="text" class="filename" name="file">
+												<input type="button" class="button" value="选取">
+												<input type="file" size="30" id="file-selector">
+											</div>
+											<button class="btn_create btn-left">上传</button>
+										</div>
+									</figcaption>
+								</figure>
+							</a>
+						</div>
+						<div class="con con-3">
+							<a href="javascript:;" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+								<figure>
+									<img src="img/guide_bg.jpg" />
+									<svg viewBox="0 0 180 320" preserveAspectRatio="none">
+										<path d="M 180,160 0,218 0,0 180,0 z" />
+									</svg>
+									<figcaption>
+										<h2>User Guide</h2>
+										<p>This manual focuses on people who use the software system.</p>
+										<p>使用系统前，请查看用户手册！</p>
+									</figcaption>
+									<div id="user-guide">
+										<div>
+                                            <h4>文件格式说明:</h4>
+                                            <p>1.带饼(柱)图的地图:表格首行B列开始内容为项目名称, 首列2行开始为省份, A1单元格必须为"项目";</p>
+                                            <img src="img/user_guide_1.png" alt="">
+                                            <p>2.热力地图:A1单元格为"省份", B1单元格为"数据", 表格首列内容为省份, 第2列为省份对应的数据;</p>
+                                            <img src="img/user_guide_2.png" alt="">
+                                            <p>3.省份名称必须为"广东"、"北京"等, 不可加"省"或"市";</p>
+											<h4>操作步骤说明:</h4>
+											<p>1.按照文件格式说明填写xlsx文件, 点击"上传文件", 选择该文件并输入标题, 点击"生成";</p>
+											<p>2.生成的图表若为带饼(柱)图的地图, 可将饼图或柱状图进行拖拽, 点击"切换饼(柱)图", 可在柱状图与饼图之间切换;</p>
+											<p>3.点击"修改题目", 修改图表的标题;</p>
+											<p>4.点击"中英文切换", 将省份名称切换成英文或中文;</p>
+											<p>5.点击"显示表格", 显示图表数据, 可修改并更新图表, 可撤销或保存修改;</p>
+											<p>6.点击"下载表格", 将修改过的表格数据按原xlsx文件的格式导出;</p>
+											<p>7.点击图表右上角的下载图标, 将当前图表保存为png格式图片;</p>
+											<p>8.点击"导入文件", 重新选择xlsx文件更新图表, 可再重复上述步骤;</p>
+										</div>
+									</div>
+								</figure>
+							</a>
+						</div>
+					</section>
+				</div>
+				<!-- /container -->
+				<div class="foot">
+					<p>©2017 GIMC13 IT. All Rights Reserved.</p>
+				</div>
+			</div>
+			<div class="left-side">
+				<div id="echart">
+				</div>
+				<div id="nav">
+					<ul class="nav-menu clearfix unstyled">
+						<li>
+							<a href="javascript:;" class="three-d a-home">
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-shouye"></i></span><span class="back">首页</span></span>
+							</a>
+						</li>
+						<li class="zhu-active">
+							<a href="javascript:;" class="three-d a-change">
+								<!--icon-bingtu  饼图-->
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-zhuzhuangtu"></i></span><span class="back">柱图</span></span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="three-d a-table">
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-xianshiyincang-"></i></span><span class="back">表格</span></span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="three-d a-revise">
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-xiugai"></i></span><span class="back">标题</span></span>
+							</a>
+
+						</li>
+						<li>
+							<a href="javascript:;" class="three-d" id="re-file">
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-shangchuan"></i></span><span class="back">上传</span></span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="three-d" id="download-file">
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-daochu"></i></span><span class="back">下载</span></span>
+								<a href="" style="display:none;" id="hf"></a>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="three-d" id="toggle-lang">
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-zhongyingwenqiehuan-xianshizhongyingwen"></i></span><span class="back">中/英</span></span>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="three-d" id="download-png">
+								<span class="three-d-box"><span class="front"><i class="iconfont icon-baocun"></i></span><span class="back">导出</span></span>
+								<a href="" style="display:none;" id="hf"></a>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!--表格-->
+				<div class="box-table">
+					<div class="win-table">
+						<div class="remove">
+							<div class="remove-icon"></div>
+						</div>
+						<!--表格内容-->
+						<div class="am-table">
+							<div></div>
+						</div>
+						<div class="footer">
+							<button class="a-save"><i class="iconfont icon-baocun"></i>保存</button>
+							<button class="a-cancel"><i class="iconfont icon-chexiaofanhuichehuishangyibu"></i>撤销</button>
+						</div>
+					</div>
+					<div class="coor"></div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+	</body>
+	<script src="js/fileAnalyze.class.js"></script>
+	<script src="js/dataMap.class.js"></script>
+	<script src="js/heatMap.class.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/drag.js"></script>
+
+</html>
